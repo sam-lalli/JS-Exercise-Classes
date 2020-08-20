@@ -65,21 +65,19 @@ class Person{
 
 const personOne = new Person("Sam", 21);
 const personTwo = new Person("Dan", 29);
-const personThree = new Person("Joe", 31);
 
 console.log(personOne.toString());
 console.log(personTwo.toString());
-console.log(personThree.toString());
 
-personThree.eat("French Fries");
-personThree.eat("Pizza");
-personThree.eat("Chocolate Cake");
+personTwo.eat("French Fries");
+personTwo.eat("Pizza");
+personTwo.eat("Chocolate Cake");
 
-console.log(personThree.stomach);
+console.log(personTwo.stomach);
 
-personThree.poop();
+personTwo.poop();
 
-console.log(personThree.stomach);
+console.log(personTwo.stomach);
 
 /*
   TASK 2
@@ -95,9 +93,41 @@ console.log(personThree.stomach);
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-class Car {
-
+class Car{
+  constructor(model,milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons){
+    this.tank = this.tank + gallons;
+  }
+  drive(distance){
+    this.odometer = this.odometer + distance;
+    this.tank = this.tank - distance / this.milesPerGallon;
+    if(this.tank === 0){
+      console.log(`I ran out of fuel at ${this.odometer} miles!`);
+    }
+  }
 }
+
+const bmw = new Car("BMW", 20);
+const fiat = new Car("Fiat", 25);
+const vw = new Car("VW", 5);
+
+bmw.fill(50);
+
+console.log(bmw);
+
+fiat.fill(15);
+fiat.drive(80);
+
+console.log(fiat.odometer);
+
+vw.fill(10);
+vw.drive(50);
+console.log(vw.tank);
 
 /*
   TASK 3
