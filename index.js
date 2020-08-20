@@ -175,9 +175,33 @@ console.log(sam.speak());
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
+class Instructor extends Lambdasian{
+  constructor(attributes){
+    super(attributes);
+    this.specialty = attributes.specialty;
+    this.favLanguage = attributes.favLanguage;
+    this.catchPhrase = attributes.catchPhrase;
+  }
+  demo(subject){
+    return `Today we are learning about ${subject}`
+  }
+  grade(student, subject){
+    return `${student} receives a perfect score on ${subject}`
+  }
 }
+
+const mrProfessor = new Instructor({
+  name: 'Mr. Professor',
+  age: '50',
+  location: 'Classroom',
+  specialty: 'Advanced Array Methods',
+  favLanguage: 'JS',
+  catchPhrase: "Can't wait for retirement",
+});
+
+console.log(mrProfessor.demo('Math'));
+console.log(mrProfessor.grade('Sam', 'Math'));
+
 
 /*
   TASK 5
