@@ -200,7 +200,7 @@ const mrProfessor = new Instructor({
 });
 
 console.log(mrProfessor.demo('Math'));
-console.log(mrProfessor.grade('Sam', 'Math'));
+console.log(mrProfessor.grade('Dave', 'Math'));
 
 
 /*
@@ -218,9 +218,36 @@ console.log(mrProfessor.grade('Sam', 'Math'));
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian{
+  constructor(attributes){
+    super(attributes);
+    this.previousBackground = attributes.previousBackground;
+    this.className = attributes.className;
+    this.favSubjects = attributes.favSubjects;
+  }
+  listSubjects(){
+    return `Loving ${this.favSubjects}!`
+  }
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`
+  }
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`
+  }
 }
+
+const dave = new Student({
+  name: 'Sam',
+  age: '21',
+  location: 'Classroom',
+  previousBackground: 'working',
+  className: 'Web35',
+  favSubjects: ['HTML', 'JS', 'CSS'],
+}); 
+
+console.log(dave.listSubjects());
+console.log(dave.PRAssignment('Science'));
+console.log(dave.sprintChallenge('Geography'));
 
 /*
   TASK 6
@@ -235,10 +262,30 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Instructor{
+  constructor(attributes){
+    super(attributes);
+    this.gradClassName = attributes.gradClassName
+    this.favInstructor = attributes.favInstructor
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`
+  }
+  debugsCode(student,subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}` 
+  }
+};
 
-}
+const jerry = new ProjectManager({
+  name: 'Jerry',
+  age: '30',
+  location: 'Classroom',
+  gradClassName: 'CS1',
+  favInstructor: 'sean',
+});
 
+console.log(jerry.standUp('Channel_30'));
+console.log(jerry.debugsCode(dave,'English'));
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
